@@ -1,0 +1,17 @@
+name: "android_logger"
+description:
+    "A logging implementation for `log` which hooks to android log output."
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/android_logger"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/Nercury/android_logger-rs"
+  }
+  version: "0.8.6"
+  last_upgrade_date { year: 2020 month: 6 day: 5 }
+  license_type: NOTICE
+}
