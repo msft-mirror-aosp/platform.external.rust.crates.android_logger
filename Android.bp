@@ -2,7 +2,6 @@
 
 rust_library_rlib {
     name: "libandroid_logger",
-    deny_warnings: false,
     crate_name: "android_logger",
     srcs: ["src/lib.rs"],
     edition: "2015",
