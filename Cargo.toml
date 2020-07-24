@@ -12,7 +12,7 @@
 
 [package]
 name = "android_logger"
-version = "0.8.6"
+version = "0.9.0"
 authors = ["The android_logger Developers"]
 description = "A logging implementation for `log` which hooks to android log output.\n"
 readme = "README.md"
@@ -21,14 +21,14 @@ categories = ["api-bindings"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Nercury/android_logger-rs"
 [dependencies.android_log-sys]
-version = "0.1"
+version = "0.2"
 
 [dependencies.env_logger]
 version = "0.7"
 default-features = false
 
 [dependencies.lazy_static]
-version = "1.0"
+version = "1.4"
 
 [dependencies.log]
 version = "0.4"
