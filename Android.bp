@@ -58,6 +58,43 @@ rust_test {
     ],
 }
 
+rust_defaults {
+    name: "android_logger_defaults",
+    crate_name: "android_logger",
+    test_suites: ["general-tests"],
+    auto_gen_config: true,
+    edition: "2015",
+    features: [
+        "default",
+        "regex",
+    ],
+    rustlibs: [
+        "libandroid_log_sys",
+        "libandroid_logger",
+        "libenv_logger",
+        "liblazy_static",
+        "liblog_rust",
+    ],
+}
+
+rust_test {
+    name: "android_logger_device_test_tests_config_log_level",
+    defaults: ["android_logger_defaults"],
+    srcs: ["tests/config_log_level.rs"],
+}
+
+rust_test {
+    name: "android_logger_device_test_tests_default_init",
+    defaults: ["android_logger_defaults"],
+    srcs: ["tests/default_init.rs"],
+}
+
+rust_test {
+    name: "android_logger_device_test_tests_multiple_init",
+    defaults: ["android_logger_defaults"],
+    srcs: ["tests/multiple_init.rs"],
+}
+
 rust_library {
     name: "libandroid_logger",
     crate_name: "android_logger",
