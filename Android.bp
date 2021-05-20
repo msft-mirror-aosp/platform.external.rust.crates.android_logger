@@ -112,6 +112,7 @@ rust_library {
     ],
     apex_available: [
         "//apex_available:platform",
+        "com.android.compos",
         "com.android.resolv",
         "com.android.virt",
     ],
@@ -119,12 +120,12 @@ rust_library {
 }
 
 // dependent_library ["feature_list"]
-//   aho-corasick-0.7.15 "default,std"
+//   aho-corasick-0.7.18 "default,std"
 //   android_log-sys-0.2.0
 //   cfg-if-1.0.0
 //   env_logger-0.8.3 "regex"
 //   lazy_static-1.4.0
 //   log-0.4.14 "std"
-//   memchr-2.3.4 "default,std,use_std"
-//   regex-1.4.6 "aho-corasick,memchr,perf,perf-cache,perf-dfa,perf-inline,perf-literal,std"
-//   regex-syntax-0.6.23
+//   memchr-2.4.0 "default,std"
+//   regex-1.5.4 "aho-corasick,memchr,perf,perf-cache,perf-dfa,perf-inline,perf-literal,std"
+//   regex-syntax-0.6.25
