@@ -40,7 +40,7 @@ license {
 }
 
 rust_test {
-    name: "android_logger_device_test_src_lib",
+    name: "android_logger_test_src_lib",
     crate_name: "android_logger",
     cargo_env_compat: true,
     cargo_pkg_version: "0.10.1",
@@ -82,19 +82,19 @@ rust_defaults {
 }
 
 rust_test {
-    name: "android_logger_device_test_tests_config_log_level",
+    name: "android_logger_test_tests_config_log_level",
     defaults: ["android_logger_test_defaults"],
     srcs: ["tests/config_log_level.rs"],
 }
 
 rust_test {
-    name: "android_logger_device_test_tests_default_init",
+    name: "android_logger_test_tests_default_init",
     defaults: ["android_logger_test_defaults"],
     srcs: ["tests/default_init.rs"],
 }
 
 rust_test {
-    name: "android_logger_device_test_tests_multiple_init",
+    name: "android_logger_test_tests_multiple_init",
     defaults: ["android_logger_test_defaults"],
     srcs: ["tests/multiple_init.rs"],
 }
