@@ -6,11 +6,11 @@
     "com.android.uwb",
     "com.android.virt"
   ],
-  "min_sdk_version": "29",
-  "vendor_available": true,
   "dependencies": true,
   "device": true,
+  "min-sdk-version": "29",
   "no-host": true,
   "run": true,
-  "tests": true
+  "tests": true,
+  "vendor-available": true
 }
