@@ -113,17 +113,11 @@ impl LogId {
 /// Output log to android system.
 #[cfg(target_os = "android")]
 fn android_log(log_id: log_ffi::log_id_t, prio: log_ffi::LogPriority, tag: &CStr, msg: &CStr) {
-    let mut message = log_ffi::__android_log_message {
-        struct_size: std::mem::size_of::<log_ffi::__android_log_message>(),
-        buffer_id: log_id as i32,
-        priority: prio as i32,
-        tag: tag.as_ptr() as *const log_ffi::c_char,
-        file: ptr::null(),
-        line: 0,
-        message: msg.as_ptr() as *const log_ffi::c_char,
-    };
     unsafe {
-        log_ffi::__android_log_write_log_message(&mut message as *mut _);
+        log_ffi::__android_log_buf_write(log_id as i32,
+                                         prio as i32,
+                                         tag.as_ptr() as *const log_ffi::c_char,
+                                         msg.as_ptr() as *const log_ffi::c_char);
     };
 }
 
