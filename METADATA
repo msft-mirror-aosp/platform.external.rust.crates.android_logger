@@ -7,13 +7,13 @@ third_party {
   }
   url {
     type: ARCHIVE
-    value: "https://static.crates.io/crates/android_logger/android_logger-0.11.0.crate"
+    value: "https://static.crates.io/crates/android_logger/android_logger-0.11.1.crate"
   }
-  version: "0.11.0"
+  version: "0.11.1"
   license_type: NOTICE
   last_upgrade_date {
     year: 2022
-    month: 4
-    day: 21
+    month: 12
+    day: 5
   }
 }
