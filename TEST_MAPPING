@@ -17,6 +17,9 @@
       "name": "authfs_device_test_src_lib"
     },
     {
+      "name": "bluetooth_with_facades.test"
+    },
+    {
       "name": "compos_verify.test"
     },
     {
@@ -65,7 +68,13 @@
       "name": "open_then_run.test"
     },
     {
-      "name": "virtualizationservice_device_test"
+      "name": "rialto_test"
+    },
+    {
+      "name": "virtualizationmanager_device_test"
+    },
+    {
+      "name": "vmbase_example.integration_test"
     }
   ],
   "presubmit-rust": [
@@ -85,6 +94,9 @@
       "name": "authfs_device_test_src_lib"
     },
     {
+      "name": "bluetooth_with_facades.test"
+    },
+    {
       "name": "compos_verify.test"
     },
     {
@@ -133,7 +145,13 @@
       "name": "open_then_run.test"
     },
     {
-      "name": "virtualizationservice_device_test"
+      "name": "rialto_test"
+    },
+    {
+      "name": "virtualizationmanager_device_test"
+    },
+    {
+      "name": "vmbase_example.integration_test"
     }
   ]
 }
