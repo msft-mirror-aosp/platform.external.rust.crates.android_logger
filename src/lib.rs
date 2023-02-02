@@ -135,10 +135,6 @@ impl AndroidLogger {
             config: OnceCell::from(config),
         }
     }
-
-    fn config(&self) -> &Config {
-        self.config.get_or_init(Config::default)
-    }
 }
 
 static ANDROID_LOGGER: OnceCell<AndroidLogger> = OnceCell::new();
@@ -156,21 +152,13 @@ impl Default for AndroidLogger {
 }
 
 impl Log for AndroidLogger {
-    fn enabled(&self, metadata: &Metadata) -> bool {
-        let config = self.config();
-        // todo: consider __android_log_is_loggable.
-        Some(metadata.level()) >= config.log_level
+    fn enabled(&self, _: &Metadata) -> bool {
+        true
     }
 
     fn log(&self, record: &Record) {
-        let config = self.config();
+        let config = self.config.get_or_init(Config::default);
 
-        if !self.enabled(record.metadata()) {
-            return;
-        }
-
-        // this also checks the level, but only if a filter was
-        // installed.
         if !config.filter_matches(record) {
             return;
         }
@@ -313,31 +301,22 @@ pub struct PlatformLogWriter<'a> {
 
 impl<'a> PlatformLogWriter<'a> {
     #[cfg(target_os = "android")]
-    pub fn new_with_priority(log_id: Option<LogId>, priority: log_ffi::LogPriority, tag: &CStr) -> PlatformLogWriter {
+    pub fn new(log_id: Option<LogId>, level: Level, tag: &CStr) -> PlatformLogWriter {
         #[allow(deprecated)] // created an issue #35 for this
         PlatformLogWriter {
-            priority,
-            log_id: LogId::to_native(log_id),
-            len: 0,
-            last_newline_index: 0,
-            tag,
-            buffer: uninit_array(),
-        }
-    }
-
-    #[cfg(target_os = "android")]
-    pub fn new(log_id: Option<LogId>, level: Level, tag: &CStr) -> PlatformLogWriter {
-        Self::new_with_priority(
-            log_id,
-            match level {
+            priority: match level {
                 Level::Warn => LogPriority::WARN,
                 Level::Info => LogPriority::INFO,
                 Level::Debug => LogPriority::DEBUG,
                 Level::Error => LogPriority::ERROR,
                 Level::Trace => LogPriority::VERBOSE,
             },
+            log_id: LogId::to_native(log_id),
+            len: 0,
+            last_newline_index: 0,
             tag,
-        )
+            buffer: uninit_array(),
+        }
     }
 
     #[cfg(not(target_os = "android"))]
