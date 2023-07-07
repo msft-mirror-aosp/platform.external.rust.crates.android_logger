@@ -43,7 +43,7 @@ rust_test {
     name: "android_logger_test_src_lib",
     crate_name: "android_logger",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.11.0",
+    cargo_pkg_version: "0.12.0",
     srcs: ["src/lib.rs"],
     test_suites: ["general-tests"],
     auto_gen_config: true,
@@ -64,7 +64,7 @@ rust_defaults {
     name: "android_logger_test_defaults",
     crate_name: "android_logger",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.11.0",
+    cargo_pkg_version: "0.12.0",
     test_suites: ["general-tests"],
     auto_gen_config: true,
     edition: "2015",
@@ -103,7 +103,7 @@ rust_library {
     name: "libandroid_logger",
     crate_name: "android_logger",
     cargo_env_compat: true,
-    cargo_pkg_version: "0.11.0",
+    cargo_pkg_version: "0.12.0",
     srcs: ["src/lib.rs"],
     edition: "2015",
     features: [
@@ -118,8 +118,9 @@ rust_library {
     ],
     apex_available: [
         "//apex_available:platform",
-        "//apex_available:anyapex"
+        "//apex_available:anyapex",
     ],
+    product_available: true,
     vendor_available: true,
     min_sdk_version: "29",
 }
