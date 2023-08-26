@@ -67,20 +67,35 @@
 extern crate android_log_sys as log_ffi;
 extern crate once_cell;
 use once_cell::sync::OnceCell;
+#[cfg(default_log_impl)]
+use crate as log;
+#[cfg(not(default_log_impl))]
 #[macro_use]
 extern crate log;
 
+#[cfg(not(default_log_impl))]
 extern crate env_logger;
 
-use log::{Level, LevelFilter, Log, Metadata, Record};
+use self::log::{Level, LevelFilter, Log, Metadata, Record};
 #[cfg(target_os = "android")]
-use log_ffi::LogPriority;
+use self::log_ffi::LogPriority;
 use std::ffi::{CStr, CString};
 use std::fmt;
 use std::mem::{self, MaybeUninit};
 use std::ptr;
 
+#[cfg(default_log_impl)]
+pub mod env_logger {
+    pub mod filter {
+        pub struct Filter;
+        impl Filter {
+            pub fn matches(&self, _: &crate::Record) -> bool { true }
+        }
+    }
+}
+#[cfg(not(default_log_impl))]
 pub use env_logger::filter::{Builder as FilterBuilder, Filter};
+#[cfg(not(default_log_impl))]
 pub use env_logger::fmt::Formatter;
 
 pub(crate) type FormatFn = Box<dyn Fn(&mut dyn fmt::Write, &Record) -> fmt::Result + Sync + Send>;
@@ -499,6 +514,12 @@ pub fn init_once(config: Config) {
     } else if let Some(level) = log_level {
         log::set_max_level(level);
     }
+    // On Android, log crate is patched to default to LevelFilter::Trace rather than Off. Preserve
+    // the existing "android_logger default level is Off" behavior by explicitly setting the level.
+    #[cfg(target_os = "android")]
+    if log_level.is_none() {
+        log::set_max_level(LevelFilter::Off);
+    }
 }
 
 // FIXME: When `maybe_uninit_uninit_array ` is stabilized, use it instead of this helper
@@ -553,6 +574,7 @@ mod tests {
 
     // Test whether the filter gets called correctly. Not meant to be exhaustive for all filter
     // options, as these are handled directly by the filter itself.
+    #[cfg(not(default_log_impl))]
     #[test]
     fn config_filter_match() {
         let info_record = Record::builder().level(Level::Info).build();
