@@ -288,6 +288,17 @@ impl Config {
         self
     }
 
+    /// Changes the Android logging system buffer to be used.
+    ///
+    /// By default, logs are sent to the [`Main`] log. Other logging buffers may
+    /// only be accessible to certain processes.
+    ///
+    /// [`Main`]: LogId::Main
+    pub fn with_log_buffer(mut self, buf_id: LogId) -> Self {
+        self.log_id = Some(buf_id);
+        self
+    }
+
     fn filter_matches(&self, record: &Record) -> bool {
         if let Some(ref filter) = self.filter {
             filter.matches(record)
