@@ -6,6 +6,42 @@ All user visible changes to this project will be documented in this file. This p
 
 
 
+## [0.13.1] · 2023-03-07
+[0.13.1]: /../../tree/v0.13.1
+
+[Diff](/../../compare/v0.13.0...v0.13.1)
+
+### Fixed
+
+- Missing logs on [Android] API 26 and earlier. ([#66], [#67])
+
+[#66]: /../../issues/66
+[#67]: /../../pull/67
+
+
+
+
+## [0.13.0] · 2023-02-14
+[0.13.0]: /../../tree/v0.13.0
+
+[Diff](/../../compare/v0.12.0...v0.13.0)
+
+### BC Breaks
+
+- Added `buf_id` argument to `PlatformLogWriter::new()` method allowing to specify concrete Android logging system buffer. ([#50], [#64])
+- Removed deprecated `Config::with_min_level()` method accepting `log::Level`. ([#65])
+
+### Added
+
+- `Config::with_log_buffer()` method to specify concrete Android logging system buffer. ([#50], [#64])
+
+[#50]: /../../pull/50
+[#64]: /../../pull/64
+[#65]: /../../pull/65
+
+
+
+
 ## [0.12.0] · 2023-01-19
 [0.12.0]: /../../tree/v0.12.0
 
