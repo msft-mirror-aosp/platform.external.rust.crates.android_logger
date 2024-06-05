@@ -11,7 +11,7 @@
 
 [package]
 name = "android_logger"
-version = "0.12.0"
+version = "0.13.3"
 authors = ["The android_logger Developers"]
 description = """
 A logging implementation for `log` which hooks to android log output.
@@ -25,10 +25,10 @@ keywords = [
 ]
 categories = ["api-bindings"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/Nercury/android_logger-rs"
+repository = "https://github.com/rust-mobile/android_logger-rs"
 
 [dependencies.android_log-sys]
-version = "0.2"
+version = "0.3"
 
 [dependencies.env_logger]
 version = "0.10"
@@ -43,6 +43,3 @@ version = "1.9"
 [features]
 default = ["regex"]
 regex = ["env_logger/regex"]
-
-[badges.travis-ci]
-repository = "Nercury/android_logger-rs"
